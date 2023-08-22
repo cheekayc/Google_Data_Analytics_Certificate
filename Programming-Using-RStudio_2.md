@@ -1,9 +1,7 @@
----
-title: "Explore coding in R"
-output: github_document
----
+Explore coding in R
+================
 
-```{r load library, message = FALSE, warning = FALSE}
+``` r
 library(tidyverse)
 library(lubridate)
 ```
@@ -12,7 +10,7 @@ library(lubridate)
 
 ## *if* statement
 
-```{r}
+``` r
 x = 4
 
 if(x > 0) {
@@ -20,9 +18,11 @@ if(x > 0) {
 }
 ```
 
+    ## [1] "x is a positive number"
+
 ## *else* statement
 
-```{r}
+``` r
 x = -7
 
 if(x > 0) {
@@ -32,9 +32,11 @@ if(x > 0) {
 }
 ```
 
+    ## [1] "x is either a negative number or zero"
+
 ## *else if* statement
 
-```{r}
+``` r
 x <- 0
 
 if(x < 0) {
@@ -46,4 +48,4 @@ if(x < 0) {
 } 
 ```
 
-
+    ## [1] "x is zero"
