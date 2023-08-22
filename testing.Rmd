@@ -1,7 +1,0 @@
----
-title: "Testing"
-output: github_document
-date: "2023-08-21"
----
-
-testing to see if this will be uploaded to my github.

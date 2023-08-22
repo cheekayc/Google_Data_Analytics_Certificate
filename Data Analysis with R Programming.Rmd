@@ -1,0 +1,11 @@
+---
+title: "Data Analysis with R Programming"
+output: github_document
+---
+
+```{r load library, message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+
+# Week 2
+
