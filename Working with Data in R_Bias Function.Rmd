@@ -1,0 +1,61 @@
+---
+title: "Working with Biased Data"
+output: github_document
+---
+
+# `bias()` function
+
+In R, we can quantify bias by comparing the actual outcome of our data with the predicted outcome. 
+The bias function in R finds the average amount that the actual outcome is greater than the predicted outcome. 
+If the model is unbiased, the outcome should be pretty close to zero.
+A high result means that the data might be biased.
+
+```{r, message = FALSE}
+# The bias function is included in the SimDesign package.
+library(SimDesign)
+```
+
+In this example, we will use the bias function to compare forecasted temperatures with the actual temperatures.
+```{r}
+actual_temp <- c(68.3, 70, 72.4, 71, 67, 70)
+predicted_temp <- c(67.9, 69, 71.5, 70, 67, 69)
+
+bias(actual_temp, predicted_temp)
+# Result is pretty close to zero, but the data seems to be biased towards its lower temperature, so they may not be as accurate as they could be.
+```
+
+In this example, a game store has been keeping a record of how many copies of new games they sell on release day. They want to compare those numbers to their actual sales so that they could find out if they are ordering new stock according to their actual needs. 
+```{r}
+actual_sales <- c(150, 203, 137, 247, 116, 287)
+predicted_sales <- c(200, 300, 150, 250, 150, 300)
+
+bias(actual_sales, predicted_sales)
+# Result is far from zero.
+# The predicted outcome is larger than the actual outcome, which means they may be ordering too much stock for release days.
+```
+
+
+# `sample()` function
+
+Every data analyst will encounter an element of bias at some point in the data analysis process. That’s why it’s so important to understand how to identify and manage biased data whenever possible.
+
+This scenario was shared by a quantitative analyst who collects data from people all over the world. They explain how they discovered bias in their data, and how they used R to address it:
+
+“I work on a team that collects survey-like data. One of the tasks my team does is called a side-by-side comparison. For example, we might show users two ads side-by-side at the same time. In our survey, we ask which of the two ads they prefer. In one case, after many iterations, we were seeing consistent bias in favor of the first item. There was also a measurable decrease in the preference for an item if we swapped its position to second.
+
+So we decided to add randomization to the position of the ads using R. We wanted to make sure that the items appeared in the first and second positions with similar frequencies. We used sample() to inject a randomization element into our R programming. In R, the sample() function allows you to take a random sample of elements from a data set. Adding this piece of code shuffled the rows in our data set randomly. So when we presented the ads to users, the positions of the ads were now random and controlled for bias. This made the survey more effective and the data more reliable.”
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
