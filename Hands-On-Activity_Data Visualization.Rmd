@@ -1,6 +1,8 @@
 ---
 title: "Visualization data with ggplot2"
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, message = FALSE}
@@ -23,10 +25,20 @@ ggplot(data = penguins) +
   geom_point(aes(x= flipper_length_mm, y = body_mass_g, shape = species, alpha = 0.8), color = 'purple')
 ```
 
+#### Plot with annotation
+
 ```{r}
 ggplot(data = penguins) +
-  geom_point(aes(x= flipper_length_mm, y = body_mass_g, color = species, shape = species))
+  geom_point(aes(x= flipper_length_mm, y = body_mass_g, color = species, shape = species)) +
+  labs(title = "Palmer Penguins: Body Mass vs. Flipper Length",
+       subtitle = "Sample of three penguin species",
+       caption = "Data collected by Dr. Kristen Gorman") +
+  annotate("text", x = 220, y = 3500, label = "The Gentoos are the largest", 
+           color = "purple", fontface = "bold", size = 4.5, angle = 25) 
+  #the values of x and y in this annotation function refers to the coordination of the text.
 ```
+
+*** We can save the code as a variable in the environment if we want to use the same code again, so we don't have to write the same code over and over again.***
 
 ### Line graph
 
@@ -204,7 +216,7 @@ ggplot(data = hotel_bookings) +
   geom_bar(mapping = aes(x = distribution_channel, fill = market_segment))
 ```
 
-## Step 6: Facets galore
+## Facets galore
 
 After reviewing the new charts, your stakeholder asks you to create separate charts for each deposit type and market segment to help them understand the differences more clearly.
 
@@ -331,4 +343,18 @@ Filters allow you to create different views of your data and allow you to invest
 * To highlight underperforming products, use an aesthetics function: `col = ifelse(x < 2, 'blue', 'yellow')`
 
 * To create a trend line in a scatterplot, add another geom function: `geom_smooth()`.
+
+# Save your plot
+
+## Option 1: Export
+
+Under the 'Plots' tab, choose the 'Export' option and save it as image or PDF.
+
+## Option 2: `ggsave()`
+
+`ggsave()` automatically save the last plot that was displayed. We have to give the file a name and tell R what kind of file we want to save it as.
+
+```{r, eval = FALSE}
+ggsave("Three Penguin Species.png")
+```
 

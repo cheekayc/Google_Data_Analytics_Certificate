@@ -50,14 +50,29 @@ ggplot(data = penguins) +
 
 ![](Hands-On-Activity_Data-Visualization_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
+#### Plot with annotation
+
 ``` r
 ggplot(data = penguins) +
-  geom_point(aes(x= flipper_length_mm, y = body_mass_g, color = species, shape = species))
+  geom_point(aes(x= flipper_length_mm, y = body_mass_g, color = species, shape = species)) +
+  labs(title = "Palmer Penguins: Body Mass vs. Flipper Length",
+       subtitle = "Sample of three penguin species",
+       caption = "Data collected by Dr. Kristen Gorman") +
+  annotate("text", x = 220, y = 3500, label = "The Gentoos are the largest", 
+           color = "purple", fontface = "bold", size = 4.5, angle = 25) 
 ```
 
     ## Warning: Removed 2 rows containing missing values (`geom_point()`).
 
 ![](Hands-On-Activity_Data-Visualization_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+``` r
+  #the values of x and y in this annotation function refers to the coordination of the text.
+```
+
+\*\*\* We can save the code as a variable in the environment if we want
+to use the same code again, so we don’t have to write the same code over
+and over again.\*\*\*
 
 ### Line graph
 
@@ -378,7 +393,7 @@ ggplot(data = hotel_bookings) +
 
 ![](Hands-On-Activity_Data-Visualization_files/figure-gfm/pressure-1.png)<!-- -->
 
-## Step 6: Facets galore
+## Facets galore
 
 After reviewing the new charts, your stakeholder asks you to create
 separate charts for each deposit type and market segment to help them
@@ -592,3 +607,20 @@ do just that. You will learn more about `ggplot2` in the next activity!
 
 - To create a trend line in a scatterplot, add another geom function:
   `geom_smooth()`.
+
+# Save your plot
+
+## Option 1: Export
+
+Under the ‘Plots’ tab, choose the ‘Export’ option and save it as image
+or PDF.
+
+## Option 2: `ggsave()`
+
+`ggsave()` automatically save the last plot that was displayed. We have
+to give the file a name and tell R what kind of file we want to save it
+as.
+
+``` r
+ggsave("Three Penguin Species.png")
+```
